@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scr", "scr", "{730BF2B5-42B0-4A3C-A03D-00B8E402446A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{2EF94D23-B0B3-47AF-99D5-55002934CB85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{5AF189AA-5D08-40F9-A1C4-A95F6446F4B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{DB63269E-C7B5-4C49-9D2B-ABA40B45CA99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventBus", "EventBus", "{4CC61CB6-B463-4E91-B30D-731F3B5C11FE}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2EF94D23-B0B3-47AF-99D5-55002934CB85} = {730BF2B5-42B0-4A3C-A03D-00B8E402446A}
+		{5AF189AA-5D08-40F9-A1C4-A95F6446F4B0} = {730BF2B5-42B0-4A3C-A03D-00B8E402446A}
+		{DB63269E-C7B5-4C49-9D2B-ABA40B45CA99} = {730BF2B5-42B0-4A3C-A03D-00B8E402446A}
+		{4CC61CB6-B463-4E91-B30D-731F3B5C11FE} = {5AF189AA-5D08-40F9-A1C4-A95F6446F4B0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AAB1E0F6-9ADB-4358-8385-808FE31F7B13}
+	EndGlobalSection
+EndGlobal
