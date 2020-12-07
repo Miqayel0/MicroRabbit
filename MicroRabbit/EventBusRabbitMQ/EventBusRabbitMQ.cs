@@ -260,24 +260,25 @@ namespace MicroRabbit.EventBusRabbitMQ
 
             if (_subsManager.HasSubscriptionsForEvent(eventName))
             {
-                using (var scope = _autofac.BeginLifetimeScope(AUTOFAC_SCOPE_NAME))
+                using var scope = _autofac.BeginLifetimeScope(AUTOFAC_SCOPE_NAME);
+                var subscriptions = _subsManager.GetHandlersForEvent(eventName);
+                foreach (var subscription in subscriptions)
                 {
-                    var subscriptions = _subsManager.GetHandlersForEvent(eventName);
-                    foreach (var subscription in subscriptions)
+                    if (subscription.IsDynamic)
                     {
-                        if (subscription.IsDynamic)
+                        if (scope.ResolveOptional(subscription.HandlerType) is IDynamicIntegrationEventHandler handler)
                         {
-                            var handler = scope.ResolveOptional(subscription.HandlerType) as IDynamicIntegrationEventHandler;
-                            if (handler == null) continue;
                             dynamic eventData = JsonDocument.Parse(message);
 
                             await Task.Yield();
                             await handler.Handle(eventData);
                         }
-                        else
+                    }
+                    else
+                    {
+                        var handler = scope.ResolveOptional(subscription.HandlerType);
+                        if (handler != null)
                         {
-                            var handler = scope.ResolveOptional(subscription.HandlerType);
-                            if (handler == null) continue;
                             var eventType = _subsManager.GetEventTypeByName(eventName);
                             var integrationEvent = JsonSerializer.Deserialize(message, eventType);
                             var concreteType = typeof(IIntegrationEventHandler<>).MakeGenericType(eventType);
